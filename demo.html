@@ -1,0 +1,51 @@
+<div id="miniextensions-form"></div>
+<script type="text/javascript">
+    window.MiniExtensionFormManager = window.MiniExtensionFormManager || new function () {
+                return {
+                    embed: function (params) {
+                        var host = 'miniextensions.com';
+                        var form_key = params.key;
+                        var api_url = 'https://api.' + host + '/v1/iframe-embed/' + form_key + '.js?absoluteShareUrl=';
+                        var form_url = 'https://app.' + host + '/form/' + form_key;
+
+                        if (params.prePopulate) {
+                            if (params.prePopulate == window.location) {
+                                params.prePopulate = {};
+
+                                // extract pre-populate-looking parameters
+                                window.location.search.replace(/[?&]+((?:id)?[0-9][0-9-]*)=([^&]*)/g, function (m, k, v) {
+                                    params.prePopulate[k] = decodeURIComponent(v.replace(/\+/g, " "));
+                                });
+                            }
+
+                            var esc = encodeURIComponent;
+                            var form_param = Object.keys(params.prePopulate)
+                                    .map(function (k) {
+                                        return esc(k) + '=' + esc(params.prePopulate[k]);
+                                    }).join('&');
+                        }
+
+                        var script_url = api_url + form_url + (form_param ? '?' + form_param : '');
+
+                        MiniExtensionFormManager.insertFrame(form_key, script_url);
+                    },
+
+                    insertFrame: function (form_key, script_url) {
+                        var container = document.getElementById('miniextensions-form'),
+                                div = document.createElement("div"),
+                                script = document.createElement("script");
+
+                        div.id = "miniextensions-iframe-embed-" + form_key;
+                        script.type = "text/javascript";
+                        script.src = script_url;
+
+                        container.parentNode.insertBefore(div, container.nextSibling);
+                        container.parentNode.insertBefore(script, container.nextSibling);
+                    }
+                };
+            }();
+    MiniExtensionFormManager.embed({
+        key: "DuZfZJ2BqcNBZgjKDbfW",
+        prePopulate: {"prefill_Company+name": "DYMICBIT", "prefill_CompanyID": "1234"}
+    });
+</script>
