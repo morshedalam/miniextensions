@@ -1,12 +1,80 @@
 <html>
 <head>
     <title>MiniExtensions Form Embed: Documentation</title>
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="embed-manager.js"></script>
+    <style>
+        h2 {
+            margin-bottom: 0;
+        }
+        .container {
+            width: 1200px;
+            margin: 50px auto;
+        }
+
+        .code-block {
+            margin-top: 20px;
+            width: 100%;
+            border: 0 none;
+            height: 275px;
+            counter-reset: line;
+        }
+
+        .code-block::nth-line(5) {
+            background-color: yellow;
+        }
+    </style>
 </head>
 <body>
-<pre id="example-for-location">
-</pre>
+<div class="container">
+<h2>Prefill param through JavaScript</h2>
+<a href="demo.html" target="_blank">Click here to see demo</a>
+
+<textarea class="code-block">
+<div id="miniextensions-form"></div>
 <script type="text/javascript">
+    window.MiniExtensionFormManager=window.MiniExtensionFormManager||new function(){return{embed:function(n){var t,e="miniextensions.com",r=n.key,i="https://api."+e+"/v1/iframe-embed/"+r+".js?absoluteShareUrl=",e="https://app."+e+"/form/"+r;n.prePopulate&&(n.prePopulate==window.location?n.prePopulate=MiniExtensionFormManager.getQueryParams():"object"!=typeof n.prePopulate&&(n.prePopulate={}),t=encodeURIComponent,o=Object.keys(n.prePopulate).map(function(e){return t(e)+"="+t(n.prePopulate[e])}).join("&"));var o=i+e+(o?"?"+o:"");MiniExtensionFormManager.insertFrame(r,o)},getQueryParam:function(e){e=MiniExtensionFormManager.getQueryParams()[e];return void 0===e?"":e},getQueryParams:function(){var e,n={},t=window.location.search.substr(1);if(t){t=t.split("&");for(var r=0;r<t.length;r++)n[(e=t[r].split("="))[0]]=e[1]}return n},insertFrame:function(e,n){var t=document.getElementById("miniextensions-form"),r=document.createElement("div"),i=document.createElement("script");r.id="miniextensions-iframe-embed-"+e,i.type="text/javascript",i.src=n,t.parentNode.insertBefore(r,t.nextSibling),t.parentNode.insertBefore(i,t.nextSibling)}}};
+
+    MiniExtensionFormManager.embed({
+        key: "DuZfZJ2BqcNBZgjKDbfW",
+        prePopulate: {"prefill_Company+name": "DYMICBIT", "prefill_CompanyID": "1234"}
+    });
 </script>
+</textarea>
+
+    <h2>Prefill param through Parent URL</h2>
+    <a href="demo-through-url-param.html?prefill_Company+name=test" target="_blank">Click here to see demo</a>
+
+<textarea class="code-block">
+<div id="miniextensions-form"></div>
+<script type="text/javascript">
+    window.MiniExtensionFormManager=window.MiniExtensionFormManager||new function(){return{embed:function(n){var t,e="miniextensions.com",r=n.key,i="https://api."+e+"/v1/iframe-embed/"+r+".js?absoluteShareUrl=",e="https://app."+e+"/form/"+r;n.prePopulate&&(n.prePopulate==window.location?n.prePopulate=MiniExtensionFormManager.getQueryParams():"object"!=typeof n.prePopulate&&(n.prePopulate={}),t=encodeURIComponent,o=Object.keys(n.prePopulate).map(function(e){return t(e)+"="+t(n.prePopulate[e])}).join("&"));var o=i+e+(o?"?"+o:"");MiniExtensionFormManager.insertFrame(r,o)},getQueryParam:function(e){e=MiniExtensionFormManager.getQueryParams()[e];return void 0===e?"":e},getQueryParams:function(){var e,n={},t=window.location.search.substr(1);if(t){t=t.split("&");for(var r=0;r<t.length;r++)n[(e=t[r].split("="))[0]]=e[1]}return n},insertFrame:function(e,n){var t=document.getElementById("miniextensions-form"),r=document.createElement("div"),i=document.createElement("script");r.id="miniextensions-iframe-embed-"+e,i.type="text/javascript",i.src=n,t.parentNode.insertBefore(r,t.nextSibling),t.parentNode.insertBefore(i,t.nextSibling)}}};
+
+    MiniExtensionFormManager.embed({
+        key: "DuZfZJ2BqcNBZgjKDbfW",
+        prePopulate: window.location
+    });
+</script>
+</textarea>
+
+<h2>Prefill param through Parent URL</h2>
+<a href="demo-get-specific-param.html?prefill_Company+name=test" target="_blank">Click here to see demo</a>
+
+<textarea class="code-block">
+<div id="miniextensions-form"></div>
+<script type="text/javascript">
+    window.MiniExtensionFormManager=window.MiniExtensionFormManager||new function(){return{embed:function(n){var t,e="miniextensions.com",r=n.key,i="https://api."+e+"/v1/iframe-embed/"+r+".js?absoluteShareUrl=",e="https://app."+e+"/form/"+r;n.prePopulate&&(n.prePopulate==window.location?n.prePopulate=MiniExtensionFormManager.getQueryParams():"object"!=typeof n.prePopulate&&(n.prePopulate={}),t=encodeURIComponent,o=Object.keys(n.prePopulate).map(function(e){return t(e)+"="+t(n.prePopulate[e])}).join("&"));var o=i+e+(o?"?"+o:"");MiniExtensionFormManager.insertFrame(r,o)},getQueryParam:function(e){e=MiniExtensionFormManager.getQueryParams()[e];return void 0===e?"":e},getQueryParams:function(){var e,n={},t=window.location.search.substr(1);if(t){t=t.split("&");for(var r=0;r<t.length;r++)n[(e=t[r].split("="))[0]]=e[1]}return n},insertFrame:function(e,n){var t=document.getElementById("miniextensions-form"),r=document.createElement("div"),i=document.createElement("script");r.id="miniextensions-iframe-embed-"+e,i.type="text/javascript",i.src=n,t.parentNode.insertBefore(r,t.nextSibling),t.parentNode.insertBefore(i,t.nextSibling)}}};
+
+    MiniExtensionFormManager.embed({
+        key: "DuZfZJ2BqcNBZgjKDbfW",
+        prePopulate: {
+            "prefill_Company+name": MiniExtensionFormManager.getQueryParam('prefill_Company+name'),
+            "prefill_CompanyID": "1234"
+        }
+    });
+</script>
+</textarea>
+
+</div>
+
 </body>
 </html>
