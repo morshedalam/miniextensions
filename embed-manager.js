@@ -37,7 +37,7 @@ window.MiniExtensionFormManager = window.MiniExtensionFormManager || new functio
                         }).join('&');
                 }
 
-                MiniExtensionFormManager.insertFrame(form_key, (api_url + form_url + (form_param ? '?' + form_param : '')));
+                MiniExtensionFormManager.insertFrame(form_key, api_url + encodeURIComponent(form_url + (form_param ? '?' + form_param : '')));
             },
             getQueryParam: function (name) {
                 var val = MiniExtensionFormManager.getQueryParams()[name];
