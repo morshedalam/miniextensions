@@ -13,19 +13,21 @@ window.MiniExtensionFormManager = window.MiniExtensionFormManager || new functio
                 else if (typeof(params.precedenceUrlParams) !== "boolean")
                     params.precedenceUrlParams = false;
 
-                if (params.precedenceUrlParams || params.prePopulate == window.location) {
+                if (params.precedenceUrlParams || params.prePopulate == window.location)
                     url_params = MiniExtensionFormManager.getQueryParams();
+
+                if(params.prePopulate == window.location) {
+                    params.prePopulate = url_params;
+                    url_params = {};
                 }
 
-                if (typeof(params.prePopulate) != 'object') {
+                if (typeof(params.prePopulate) != 'object')
                     params.prePopulate = {};
-                }
 
-                if (params.precedenceUrlParams) {
+                if (params.precedenceUrlParams)
                     for (var key in url_params) {
                         params.prePopulate[key] = url_params[key];
                     }
-                }
 
                 if (params.prePopulate) {
                     var esc = encodeURIComponent;
